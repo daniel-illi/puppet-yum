@@ -45,7 +45,10 @@ class yum(
       }
     }
     amazon : {
-      include yum::amazon::base
+      class{[ 'yum::amazon::base',
+              'yum::prerequisites' ]:
+        stage => $repo_stage,
+      }
     }
     default : {
       fail("no managed repo yet for this distro")
