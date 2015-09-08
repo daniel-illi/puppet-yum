@@ -8,6 +8,13 @@ class yum::centos::base {
       gpgcheck       => 1,
       gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$releasever',
       priority       => 1;
+    'debuginfo':
+      descr          => 'CentOS-$releasever - DebugInfo',
+      mirrorlist     => 'http://debuginfo.centos.org/$releasever/$basearch/',
+      enabled        => 0,
+      gpgcheck       => 1,
+      gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$releasever',
+      priority       => 1;
     'updates':
       descr          => 'CentOS-$releasever - Updates',
       mirrorlist     => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=updates',
@@ -104,35 +111,6 @@ class yum::centos::base {
       failovermethod => priority,
       gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL',
       priority       => 17;
-    'kbs-CentOS-Extras':
-      descr          => 'CentOS.Karan.Org-EL$releasever - Stable',
-      baseurl        => 'http://centos.karan.org/el$releasever/extras/stable/$basearch/RPMS/',
-      enabled        => 1,
-      gpgcheck       => 1,
-      gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-kbsingh',
-      priority       => 20;
-    'kbs-CentOS-Extras-Testing':
-      descr          => 'CentOS.Karan.Org-EL$releasever - Testing',
-      baseurl        => 'http://centos.karan.org/el$releasever/extras/testing/$basearch/RPMS/',
-      enabled        => 0,
-      gpgcheck       => 1,
-      gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-kbsingh',
-      priority       => 20;
-    'kbs-CentOS-Misc':
-      descr          => 'CentOS.Karan.Org-EL$releasever - Stable',
-      baseurl        => 'http://centos.karan.org/el$releasever/misc/stable/$basearch/RPMS/',
-      enabled        => 1,
-      gpgcheck       => 1,
-      gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-kbsingh',
-      priority       => 20;
-    'kbs-CentOS-Misc-Testing':
-      descr          => 'CentOS.Karan.Org-EL$releasever - Testing',
-      baseurl        => 'http://centos.karan.org/el$releasever/misc/testing/$basearch/RPMS/',
-      enabled        => 0,
-      gpgcheck       => 1,
-      gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-kbsingh',
-      priority       => 20;
-
     'elrepo':
       descr          => 'ELRepo.org Community Enterprise Linux Repository - el$releasever',
       baseurl        => 'http://elrepo.org/linux/elrepo/el$relesever/$basearch/',
